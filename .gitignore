@@ -1,0 +1,15 @@
+node_modules
+dist
+dist-ssr
+*.local
+.edge-temp
+.chrome-temp
+.temp-browser
+.vite
+.vercel
+qa_results
+.DS_Store
+Thumbs.db
+*.log
+qa-*.png
+screenshot-*.png

@@ -1,0 +1,46 @@
+:root {
+  /* Cream Light Theme */
+  --bg-cream-primary: #F5F1EB;
+  --bg-cream-secondary: #EBE5DC;
+  --bg-cream-card: #FFFFFF;
+  --text-cream-primary: #121316;
+  --text-cream-secondary: #5A5752;
+  --text-cream-muted: #8A857D;
+  --border-cream: rgba(18, 19, 22, 0.08);
+
+  /* Obsidian Dark Theme */
+  --bg-dark-primary: #0D0E11;
+  --bg-dark-secondary: #131418;
+  --bg-dark-card: #18191E;
+  --bg-dark-elevated: #202229;
+  --text-dark-primary: #F7F7F8;
+  --text-dark-secondary: #A0A2AC;
+  --text-dark-muted: #646670;
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-dark-subtle: rgba(255, 255, 255, 0.04);
+
+  /* Discipline Doors Palette */
+  --door-web-blue: #1E3A5F;
+  --door-web-blue-shadow: #142740;
+  --door-app-purple: #483E54;
+  --door-app-purple-shadow: #322B3B;
+  --door-ui-green: #5B7A63;
+  --door-ui-green-shadow: #3E5343;
+  --door-graphic-orange: #A65236;
+  --door-graphic-orange-shadow: #793A26;
+
+  /* Brushed Brass Hardware */
+  --brass-highlight: #F5E2A8;
+  --brass-base: #C8A355;
+  --brass-shadow: #8C6A24;
+  --brass-gradient: linear-gradient(135deg, #F5E2A8 0%, #C8A355 50%, #8C6A24 100%);
+
+  /* Accents & Status */
+  --status-green: #22C55E;
+  --status-green-glow: rgba(34, 197, 94, 0.4);
+
+  /* Spacing & Layout */
+  --max-content-width: 1360px;
+  --nav-height: 64px;
+}
+

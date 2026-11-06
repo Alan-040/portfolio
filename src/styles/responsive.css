@@ -1,0 +1,44 @@
+/* Responsive utility overrides and touch adaptations */
+
+@media (max-width: 1024px) {
+  :root {
+    --max-content-width: 100%;
+    --nav-height: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .door-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .timeline-dual-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .timeline-sticky-left {
+    position: relative !important;
+    top: 0 !important;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .door-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
