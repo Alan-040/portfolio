@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+  import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, MoveDown } from 'lucide-react';
 import { SelectiveColorPortrait } from '../components/SelectiveColorPortrait';
 import {
