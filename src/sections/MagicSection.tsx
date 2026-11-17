@@ -149,8 +149,8 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
         className="architectural-wall-backdrop absolute inset-0 pointer-events-none -z-20 transition-all duration-500"
         style={{
           background: isLightMode
-            ? 'radial-gradient(ellipse 1800px 1000px at 50% 35%, #F7F3ED 0%, #EFE9DF 45%, #E5DDD2 100%)'
-            : 'radial-gradient(ellipse 1800px 1000px at 50% 35%, #1A1D25 0%, #111319 50%, #0A0B0E 100%)',
+            ? 'radial-gradient(ellipse 1800px 950px at 50% 30%, #F7F3ED 0%, #EFE9DF 45%, #F5F1EB 80%, #F5F1EB 100%)'
+            : 'radial-gradient(ellipse 1800px 950px at 50% 30%, #1A1D25 0%, #111319 50%, #0D0E11 80%, #0D0E11 100%)',
         }}
       />
 
@@ -486,34 +486,36 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
 
         {/* Full-Bleed Architectural Grounded Floor Plane Across Entire Viewport */}
         <div
-          className="floor-plane relative w-full h-24 sm:h-32 overflow-hidden pointer-events-none z-0 border-t"
+          className="floor-plane relative w-full h-36 sm:h-48 md:h-56 overflow-hidden pointer-events-none z-0 border-t"
           style={{
             borderColor: isLightMode ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.08)',
           }}
         >
-          {/* Floor Surface Depth Gradient */}
+          {/* Floor Surface Depth Gradient: Seamlessly blends from light floor shade down into the base section color */}
           <div
             className="w-full h-full transition-colors duration-500"
             style={{
               background: isLightMode
-                ? 'linear-gradient(180deg, #FAF7F2 0%, #F5F1EA 50%, #ECE6DD 100%)'
-                : 'linear-gradient(180deg, #101217 0%, #090B0E 40%, #050608 100%)',
+                ? 'linear-gradient(180deg, #FAF7F2 0%, #F6F2EC 25%, #F5F1EB 70%, #F5F1EB 100%)'
+                : 'linear-gradient(180deg, #101217 0%, #0E1014 25%, #0D0E11 70%, #0D0E11 100%)',
             }}
           />
 
-          {/* Distinctive Warm Peach / Coral Radiant Ambient Wash on the Left Edge */}
+          {/* Distinctive Warm Peach / Coral Radiant Ambient Wash on the Left Edge with Smooth Feathered Falloff */}
           {isLightMode && (
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'radial-gradient(ellipse 800px 280px at 0% 50%, rgba(245, 142, 102, 0.42) 0%, rgba(250, 180, 150, 0.22) 45%, transparent 75%)',
+                  'radial-gradient(ellipse 800px 240px at 0% 15%, rgba(245, 142, 102, 0.38) 0%, rgba(250, 180, 150, 0.18) 35%, transparent 75%)',
+                maskImage: 'linear-gradient(to bottom, black 0%, black 25%, transparent 85%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 25%, transparent 85%)',
               }}
             />
           )}
 
           {/* Contact Shadows & Light Falloff Directly Beneath Each Door */}
-          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 h-full">
+          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 h-full relative z-0">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 h-full">
               {DOORS_DATA.map((door) => {
                 return (
@@ -541,6 +543,16 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
               })}
             </div>
           </div>
+
+          {/* Seamless Bottom Gradient Blend into Next Section */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-28 sm:h-36 pointer-events-none z-10 transition-colors duration-500"
+            style={{
+              background: isLightMode
+                ? 'linear-gradient(to bottom, rgba(245, 241, 235, 0) 0%, rgba(245, 241, 235, 0.5) 40%, #F5F1EB 100%)'
+                : 'linear-gradient(to bottom, rgba(13, 14, 17, 0) 0%, rgba(13, 14, 17, 0.5) 40%, #0D0E11 100%)',
+            }}
+          />
         </div>
       </div>
     </section>

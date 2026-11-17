@@ -163,6 +163,14 @@ async function runQA() {
   console.log('Recreated Light Mode State:', JSON.stringify(lightAudit, null, 2));
   await client.captureScreenshot('recreated_user_style_light_mode.png');
 
+  // 1b. Scroll down 350px to inspect the floor blend into the timeline section
+  console.log('\n--- 1b. CAPTURING FLOOR BLEND TRANSITION ---');
+  await client.evaluate(`window.scrollBy({ top: 350, behavior: 'instant' });`);
+  await sleep(600);
+  await client.captureScreenshot('recreated_user_style_floor_blend.png');
+  await client.evaluate(`document.querySelector('#doors')?.scrollIntoView({ behavior: 'instant' });`);
+  await sleep(500);
+
   // 2. Hover over Door 1 (App Developer)
   console.log('\n--- 2. HOVER OVER DOOR 1 ---');
   const doorBoxes = await client.evaluate(`(() => {
