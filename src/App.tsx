@@ -14,7 +14,7 @@ type ViewMode =
   | 'main'
   | 'showcase-full-stack'
   | 'showcase-ui-ux'
-  | 'showcase-web'
+  | 'showcase-web-dev'
   | 'showcase-blender-3d';
 
 export function App() {
@@ -40,15 +40,15 @@ export function App() {
 
   const handleEnterDoor = (doorId: string) => {
     // Map door IDs to showcase views
-    const disciplineMap: Record<string, string> = {
-      'web-dev': 'web',
+    const disciplineMap: Record<string, 'full-stack' | 'ui-ux' | 'web-dev' | 'blender-3d'> = {
+      'web-dev': 'web-dev',
       'app-dev': 'full-stack',
       'full-stack': 'full-stack',
       'ui-ux': 'ui-ux',
       'graphic-design': 'blender-3d',
       'blender-3d': 'blender-3d',
     };
-    const validDiscipline = disciplineMap[doorId] || (['full-stack', 'ui-ux', 'web-dev', 'blender-3d'].includes(doorId) ? doorId : 'web');
+    const validDiscipline = disciplineMap[doorId] || 'web-dev';
 
     setCurrentView(`showcase-${validDiscipline}` as ViewMode);
     window.scrollTo({ top: 0, behavior: 'instant' });

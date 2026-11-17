@@ -15,10 +15,10 @@ interface HeroSectionProps {
 }
 
 export const ROLES = [
-  { id: '01 / 04', title: 'Full Stack Developer' },
-  { id: '02 / 04', title: 'UI/UX Designer' },
-  { id: '03 / 04', title: 'Web Developer' },
-  { id: '04 / 04', title: '3D Blender Artist' },
+  { id: '01 / 04', title: 'Web Developer' },
+  { id: '02 / 04', title: 'App Developer' },
+  { id: '03 / 04', title: 'UI/UX Designer' },
+  { id: '04 / 04', title: 'Graphic Designer' },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({

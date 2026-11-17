@@ -32,10 +32,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { id: 'home', label: 'Home' },
-    { id: 'full-stack', label: 'Full Stack Developer' },
-    { id: 'ui-ux', label: 'UI/UX Designer' },
     { id: 'web-dev', label: 'Web Developer' },
-    { id: 'blender-3d', label: '3D Blender Artist' },
+    { id: 'app-dev', label: 'App Developer' },
+    { id: 'ui-ux', label: 'UI/UX Designer' },
+    { id: 'graphic-design', label: 'Graphic Designer' },
     { id: 'my-story', label: 'My story' },
     { id: 'contact', label: 'Contact' },
   ];

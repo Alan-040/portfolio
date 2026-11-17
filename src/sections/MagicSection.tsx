@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
 import { animateMagicSectionEntrance } from '../animations/scrollAnimations';
 
 export interface DisciplineDoor {
@@ -17,46 +16,10 @@ export interface DisciplineDoor {
 
 export const DOORS_DATA: DisciplineDoor[] = [
   {
-    id: 'full-stack',
-    discipline: 'Full Stack Developer',
-    colorHex: '#1B3358', // Deep navy blue
-    shadowHex: '#12243C',
-    plaqueLine1: 'FULL STACK',
-    plaqueLine2: 'DEVELOPER',
-    plaqueTitle: 'FULL STACK DEVELOPER',
-    headline: 'Full Stack Developer',
-    tagline: 'END TO END • FROM ARCHITECTURE TO DEPLOYMENT',
-    checklist: [
-      'Scalable full-stack web and cloud architectures',
-      'RESTful APIs, GraphQL & secure backend microservices',
-      'High-performance React & TypeScript web client execution',
-      'Database schema design, indexing & connection pooling',
-      'Lighthouse 100/100, Core Web Vitals & automated CI/CD',
-    ],
-  },
-  {
-    id: 'ui-ux',
-    discipline: 'UI/UX Designer',
-    colorHex: '#483E54', // Muted mauve purple
-    shadowHex: '#2E2736',
-    plaqueLine1: 'UI/UX',
-    plaqueLine2: 'DESIGNER',
-    plaqueTitle: 'UI/UX DESIGNER',
-    headline: 'UI/UX Design',
-    tagline: 'RESEARCH FIRST, PIXELS SECOND',
-    checklist: [
-      'Brand & business needs analysis and stakeholder alignment',
-      'User & competitor research with behavioral mapping',
-      'Information architecture, wireframes & clickable prototypes',
-      'Design systems in Figma with scalable component tokens',
-      'Usability testing, accessibility (a11y) & design QA audits',
-    ],
-  },
-  {
     id: 'web-dev',
     discipline: 'Web Developer',
-    colorHex: '#597463', // Muted sage green
-    shadowHex: '#3B4F42',
+    colorHex: '#1B3358', // Deep navy blue
+    shadowHex: '#12243C',
     plaqueLine1: 'WEB',
     plaqueLine2: 'DEVELOPER',
     plaqueTitle: 'WEB DEVELOPER',
@@ -71,21 +34,57 @@ export const DOORS_DATA: DisciplineDoor[] = [
     ],
   },
   {
-    id: 'blender-3d',
-    discipline: '3D Blender Artist',
-    colorHex: '#AF562D', // Muted terracotta orange
-    shadowHex: '#75371B',
-    plaqueLine1: '3D BLENDER',
-    plaqueLine2: 'ARTIST',
-    plaqueTitle: '3D BLENDER ARTIST',
-    headline: '3D Blender Artist',
-    tagline: 'SPATIAL 3D MODELING, MATERIALS & CINEMATIC MOTION',
+    id: 'app-dev',
+    discipline: 'App Developer',
+    colorHex: '#483E54', // Dark plum / mauve purple
+    shadowHex: '#2E2736',
+    plaqueLine1: 'APP',
+    plaqueLine2: 'DEVELOPER',
+    plaqueTitle: 'APP DEVELOPER',
+    headline: 'App Developer',
+    tagline: 'CROSS-PLATFORM & HIGH-PERFORMANCE MOBILE APPS',
     checklist: [
-      '3D spatial modeling, hard-surface meshes & architectural forms',
-      'PBR materials, realistic glass, metal & procedural textures',
-      'Studio lighting, HDRI illumination & photorealistic rendering',
-      'Cinematic camera animation, turnarounds & motion keyframes',
-      'Optimized glTF/GLB web exports for interactive 3D in Three.js',
+      'React Native, Flutter & progressive web mobile architectures',
+      'Fluid gesture mechanics, 60fps animations & tactile haptics',
+      'Offline-first synchronization, caching & state persistence',
+      'Secure biometric authentication, notifications & deep linking',
+      'App Store & Google Play deployment, CI/CD and release pipelines',
+    ],
+  },
+  {
+    id: 'ui-ux',
+    discipline: 'UI/UX Designer',
+    colorHex: '#597463', // Sage green
+    shadowHex: '#3B4F42',
+    plaqueLine1: 'UI/UX',
+    plaqueLine2: 'DESIGNER',
+    plaqueTitle: 'UI/UX DESIGNER',
+    headline: 'UI/UX Design',
+    tagline: 'RESEARCH FIRST, PIXELS SECOND',
+    checklist: [
+      'Brand & business needs analysis and stakeholder alignment',
+      'User & competitor research with behavioral mapping',
+      'Information architecture, wireframes & clickable prototypes',
+      'Design systems in Figma with scalable component tokens',
+      'Usability testing, accessibility (a11y) & design QA audits',
+    ],
+  },
+  {
+    id: 'graphic-design',
+    discipline: 'Graphic Designer',
+    colorHex: '#AF562D', // Warm rust-orange / terracotta
+    shadowHex: '#75371B',
+    plaqueLine1: 'GRAPHIC',
+    plaqueLine2: 'DESIGNER',
+    plaqueTitle: 'GRAPHIC DESIGNER',
+    headline: 'Graphic Designer',
+    tagline: 'BRAND IDENTITY, EDITORIAL & VISUAL STORYTELLING',
+    checklist: [
+      'Visual brand identities, logos & comprehensive guidelines',
+      'Editorial layouts, digital publishing & typography systems',
+      'Vector illustration, icon design & asset production pipelines',
+      'Packaging design, mockups & high-resolution print prepress',
+      'Motion graphics, 3D spatial branding & social campaign kits',
     ],
   },
 ];
@@ -99,11 +98,10 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
   onEnterDoor,
   isLightMode = false,
 }) => {
-  const [activeDoorId, setActiveDoorId] = useState<string>('full-stack');
+  const [activeDoorId, setActiveDoorId] = useState<string>('web-dev');
   const [hoveredDoorId, setHoveredDoorId] = useState<string | null>(null);
   const [enteringDoorId, setEnteringDoorId] = useState<string | null>(null);
   const [isZooming, setIsZooming] = useState<boolean>(false);
-  const activeDoor = DOORS_DATA.find((d) => d.id === activeDoorId) || DOORS_DATA[0];
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -142,24 +140,24 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
     <section
       id="doors"
       ref={sectionRef}
-      className={`min-h-screen py-24 flex flex-col justify-center transition-colors duration-500 relative overflow-hidden ${
+      className={`min-h-screen pt-24 pb-16 flex flex-col justify-between transition-colors duration-500 relative overflow-hidden ${
         isLightMode ? 'text-[#121316]' : 'text-white'
       }`}
     >
       {/* Full-Bleed Continuous Architectural Wall Backdrop */}
       <div
-        className="architectural-wall-backdrop absolute inset-0 pointer-events-none -z-10 transition-all duration-500"
+        className="architectural-wall-backdrop absolute inset-0 pointer-events-none -z-20 transition-all duration-500"
         style={{
           background: isLightMode
-            ? 'radial-gradient(ellipse 1600px 900px at 50% 30%, #F5F1EB 0%, #EDE7DD 55%, #E3DBD0 100%)'
-            : 'radial-gradient(ellipse 1600px 900px at 50% 30%, #1A1D25 0%, #111319 50%, #0A0B0E 100%)',
+            ? 'radial-gradient(ellipse 1800px 1000px at 50% 35%, #F7F3ED 0%, #EFE9DF 45%, #E5DDD2 100%)'
+            : 'radial-gradient(ellipse 1800px 1000px at 50% 35%, #1A1D25 0%, #111319 50%, #0A0B0E 100%)',
         }}
       />
 
-      <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 flex flex-col justify-center relative z-10">
-        {/* Section Title — Clean Editorial Match to Reference Image */}
+      {/* Section Title — Clean Editorial Match to Reference Image */}
+      <div className="w-full max-w-[1360px] mx-auto px-6 md:px-12 text-center relative z-10 mb-8 sm:mb-12">
         <div
-          className={`doors-heading text-center mb-12 md:mb-16 transition-opacity duration-300 ${
+          className={`doors-heading transition-opacity duration-300 ${
             isZooming ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
@@ -171,17 +169,41 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
             Magic happens behind the doors
           </h2>
         </div>
+      </div>
 
-        {/* Continuous Architectural Wall Structure */}
-        <div className="architectural-wall-container relative w-full max-w-5xl mx-auto mb-16">
-          {/* Smooth, Continuous Wall Surface with Overhead Spotlights above Arches */}
+      {/* Architectural Scene Area: Continuous Wall, 4 Arched Doors, Full-Bleed Baseboard & Full-Bleed Floor */}
+      <div className="relative w-full">
+        {/* Full-Bleed Continuous Baseboard Molding Along Bottom of Wall (Behind Doors) */}
+        <div
+          className="absolute bottom-24 sm:bottom-32 left-0 right-0 w-full h-5 sm:h-6 pointer-events-none z-0 transition-colors duration-500"
+          style={{
+            background: isLightMode
+              ? 'linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 45%, #F0EAE2 100%)'
+              : 'linear-gradient(180deg, #2D313C 0%, #1E2028 45%, #101217 100%)',
+            borderTop: isLightMode
+              ? '1.5px solid rgba(255,255,255,1)'
+              : '1.5px solid rgba(255,255,255,0.22)',
+            boxShadow: isLightMode
+              ? '0 3px 8px rgba(0,0,0,0.06), inset 0 1px 0 #FFFFFF'
+              : '0 6px 18px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.15)',
+          }}
+        >
+          {/* Baseboard Beveled Chamfer Line */}
           <div
-            className={`architectural-wall-surface relative w-full pt-6 pb-2 transition-all duration-500 ${
-              isZooming ? 'opacity-0 duration-300' : 'opacity-100'
-            }`}
-          >
-            {/* 4 Arched Doors Horizontal Array */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full relative z-10 items-end">
+            className="w-full h-[1px]"
+            style={{
+              background: isLightMode ? 'rgba(0,0,0,0.06)' : 'rgba(0,0,0,0.65)',
+            }}
+          />
+        </div>
+
+        {/* 4 Arched Doors Horizontal Array (Centered) */}
+        <div
+          className={`w-full max-w-5xl mx-auto px-4 sm:px-6 relative z-10 transition-all duration-500 ${
+            isZooming ? 'opacity-0 duration-300' : 'opacity-100'
+          }`}
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full items-end">
               {DOORS_DATA.map((door) => {
                 const isSelected = door.id === activeDoorId;
                 const isHovered = door.id === hoveredDoorId;
@@ -332,7 +354,9 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
                             transform: isEntering
                               ? 'perspective(1400px) rotateY(-84deg) scaleX(0.96) translateZ(8px)'
                               : isHovered
-                              ? 'perspective(1400px) rotateY(-8deg) translateZ(5px)'
+                              ? 'perspective(1400px) rotateY(-12deg) translateZ(5px)'
+                              : door.id === 'ui-ux'
+                              ? 'perspective(1400px) rotateY(-7deg) translateZ(4px)'
                               : 'perspective(1400px) rotateY(0deg)',
                           }}
                         >
@@ -458,192 +482,84 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
                 );
               })}
             </div>
-
-            {/* Continuous Integrated Baseboard Molding Across Wall */}
-            <div className="w-full mt-2 sm:mt-2.5 relative z-10">
-              <div
-                className="w-full h-5 sm:h-6 rounded-xs relative flex flex-col justify-between transition-colors duration-500"
-                style={{
-                  background: isLightMode
-                    ? 'linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 45%, #F0EAE2 100%)'
-                    : 'linear-gradient(180deg, #2D313C 0%, #1E2028 45%, #101217 100%)',
-                  borderTop: isLightMode
-                    ? '1.5px solid rgba(255,255,255,1)'
-                    : '1.5px solid rgba(255,255,255,0.22)',
-                  boxShadow: isLightMode
-                    ? '0 4px 12px rgba(0,0,0,0.08), inset 0 1px 0 #FFFFFF'
-                    : '0 6px 18px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.15)',
-                }}
-              >
-                {/* Baseboard Beveled Chamfer Line */}
-                <div
-                  className="w-full h-[1px]"
-                  style={{
-                    background: isLightMode ? 'rgba(0,0,0,0.06)' : 'rgba(0,0,0,0.65)',
-                  }}
-                />
-              </div>
-              {/* Baseboard Shoe Junction Shadow Casting onto Floor */}
-              <div
-                className="w-full h-2.5 pointer-events-none"
-                style={{
-                  background: isLightMode
-                    ? 'linear-gradient(180deg, rgba(0,0,0,0.18) 0%, transparent 100%)'
-                    : 'linear-gradient(180deg, rgba(0,0,0,0.95) 0%, transparent 100%)',
-                }}
-              />
-            </div>
-
-            {/* Architectural Grounded Floor Plane (Recreating the Exact Style in the User's Image) */}
-            <div className="floor-plane relative w-full h-20 sm:h-28 -mt-2.5 overflow-hidden pointer-events-none z-0">
-              {/* Floor Surface Depth Gradient */}
-              <div
-                className="w-full h-full transition-colors duration-500"
-                style={{
-                  background: isLightMode
-                    ? 'linear-gradient(180deg, #FAF7F2 0%, #F5F1EA 50%, #ECE6DD 100%)'
-                    : 'linear-gradient(180deg, #101217 0%, #090B0E 40%, #050608 100%)',
-                }}
-              />
-
-              {/* Distinctive Warm Peach / Coral Radiant Ambient Wash on the Left (from uploaded reference image) */}
-              {isLightMode && (
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      'radial-gradient(ellipse 700px 240px at 0% 50%, rgba(245, 142, 102, 0.45) 0%, rgba(250, 180, 150, 0.25) 45%, transparent 80%)',
-                  }}
-                />
-              )}
-
-              {/* Contact Shadows & Light Falloff Directly Beneath Each Door */}
-              <div className="absolute inset-0 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-4">
-                {DOORS_DATA.map((door) => {
-                  return (
-                    <div key={door.id} className="relative w-full h-full flex flex-col items-center">
-                      {/* Contact Shadow directly under door base */}
-                      <div
-                        className={`h-2.5 rounded-full blur-[2px] transition-all duration-300 ${
-                          isLightMode ? 'w-4/5 opacity-40' : 'w-3/4 opacity-80'
-                        }`}
-                        style={{
-                          background: isLightMode
-                            ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 75%)'
-                            : 'radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, transparent 75%)',
-                        }}
-                      />
-                      {/* Subtle Ambient Color Reflection / Light Falloff */}
-                      <div
-                        className="w-4/5 h-8 rounded-full blur-[14px] -mt-1 opacity-25"
-                        style={{
-                          background: `radial-gradient(ellipse at center, ${door.colorHex} 0%, transparent 75%)`,
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
           </div>
 
-          {/* Discipline Titles Under Baseboard */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full mt-4 text-center relative z-10">
-            {DOORS_DATA.map((door) => {
-              const isSelected = door.id === activeDoorId;
-              return (
-                <span
-                  key={door.id}
-                  onClick={() => handleDoorClick(door.id)}
-                  className={`text-xs sm:text-sm font-semibold tracking-tight transition-all cursor-pointer ${
-                    isZooming
-                      ? 'opacity-0'
-                      : isSelected
-                      ? isLightMode
-                        ? 'text-neutral-900 font-bold opacity-100'
-                        : 'text-white font-bold opacity-100'
-                      : isLightMode
-                      ? 'text-neutral-500 hover:text-neutral-900 hover:opacity-100'
-                      : 'text-white/60 hover:text-white hover:opacity-100'
-                  }`}
-                >
-                  {door.discipline}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Expanded Service Deliverables Drawer for the Active Door */}
+        {/* Full-Bleed Architectural Grounded Floor Plane Across Entire Viewport */}
         <div
-          className={`door-drawer max-w-4xl mx-auto w-full p-8 md:p-12 rounded-2xl border transition-all duration-300 ${
-            isZooming ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          } ${
-            isLightMode
-              ? 'bg-white border-[#121316]/10 shadow-lg text-[#121316]'
-              : 'bg-[#16171B] border-white/10 shadow-2xl text-white'
-          }`}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-8 space-y-4">
-              <div>
-                <span className="text-xs font-mono font-semibold tracking-wider text-emerald-500 uppercase">
-                  {activeDoor.tagline}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight mt-1">
-                  {activeDoor.headline}
-                </h3>
-              </div>
-
-              <ul className="space-y-2.5 pt-2">
-                {activeDoor.checklist.map((item, idx) => (
-                  <li key={idx} className="flex items-center space-x-3 text-sm opacity-80">
-                    <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center shrink-0">
-                      <Check className="w-2.5 h-2.5" />
-                    </div>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="md:col-span-4 flex flex-col items-start md:items-end justify-center space-y-3">
-              <button
-                onClick={() => handleTriggerEntry(activeDoor.id)}
-                className={`w-full md:w-auto px-6 py-3 rounded-full text-xs font-semibold transition-all shadow-md flex items-center justify-center space-x-2 ${
-                  isLightMode
-                    ? 'bg-[#121316] text-white hover:bg-neutral-800'
-                    : 'bg-white text-black hover:bg-neutral-200'
-                }`}
-                data-cursor="ENTER"
-              >
-                <span>Explore {activeDoor.discipline}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-              <span className="text-[10px] font-mono opacity-50">
-                Interactive 3D Portal
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Animated Downward Scroll Indicator (Guides visitors towards My Story) */}
-        <div
-          onClick={() => {
-            const el = document.getElementById('my-story') || document.getElementById('timeline');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          className="floor-plane relative w-full h-24 sm:h-32 overflow-hidden pointer-events-none z-0 border-t"
+          style={{
+            borderColor: isLightMode ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.08)',
           }}
-          className={`flex flex-col items-center justify-center mt-12 cursor-pointer group transition-all duration-300 ${
-            isZooming ? 'opacity-0 pointer-events-none' : 'opacity-70 hover:opacity-100'
-          }`}
-          data-cursor="SCROLL"
         >
-          <span className="text-[10px] font-mono tracking-widest uppercase mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
-            Scroll to My Story
-          </span>
-          <div className="w-5 h-8 rounded-full border border-current/30 flex items-start justify-center p-1.5 shadow-sm group-hover:border-current/60 transition-colors">
-            <div className="w-1 h-2 rounded-full bg-current animate-bounce" />
+          {/* Floor Surface Depth Gradient */}
+          <div
+            className="w-full h-full transition-colors duration-500"
+            style={{
+              background: isLightMode
+                ? 'linear-gradient(180deg, #FAF7F2 0%, #F5F1EA 50%, #ECE6DD 100%)'
+                : 'linear-gradient(180deg, #101217 0%, #090B0E 40%, #050608 100%)',
+            }}
+          />
+
+          {/* Distinctive Warm Peach / Coral Radiant Ambient Wash on the Left Edge */}
+          {isLightMode && (
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'radial-gradient(ellipse 800px 280px at 0% 50%, rgba(245, 142, 102, 0.42) 0%, rgba(250, 180, 150, 0.22) 45%, transparent 75%)',
+              }}
+            />
+          )}
+
+          {/* Contact Shadows & Light Falloff Directly Beneath Each Door */}
+          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 h-full">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 h-full">
+              {DOORS_DATA.map((door) => {
+                return (
+                  <div key={door.id} className="relative w-full h-full flex flex-col items-center">
+                    {/* Contact Shadow directly under door base */}
+                    <div
+                      className={`h-2.5 rounded-full blur-[2px] transition-all duration-300 ${
+                        isLightMode ? 'w-4/5 opacity-40' : 'w-3/4 opacity-80'
+                      }`}
+                      style={{
+                        background: isLightMode
+                          ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 75%)'
+                          : 'radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, transparent 75%)',
+                      }}
+                    />
+                    {/* Subtle Ambient Color Reflection / Light Falloff */}
+                    <div
+                      className="w-4/5 h-8 rounded-full blur-[14px] -mt-1 opacity-25"
+                      style={{
+                        background: `radial-gradient(ellipse at center, ${door.colorHex} 0%, transparent 75%)`,
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Animated Downward Scroll Indicator (Guides visitors towards My Story) */}
+      <div
+        onClick={() => {
+          const el = document.getElementById('my-story') || document.getElementById('timeline');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+        className={`flex flex-col items-center justify-center pt-8 cursor-pointer group transition-all duration-300 relative z-20 ${
+          isZooming ? 'opacity-0 pointer-events-none' : 'opacity-70 hover:opacity-100'
+        }`}
+        data-cursor="SCROLL"
+      >
+        <span className="text-[10px] font-mono tracking-widest uppercase mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
+          Scroll to My Story
+        </span>
+        <div className="w-5 h-8 rounded-full border border-current/30 flex items-start justify-center p-1.5 shadow-sm group-hover:border-current/60 transition-colors">
+          <div className="w-1 h-2 rounded-full bg-current animate-bounce" />
         </div>
       </div>
     </section>

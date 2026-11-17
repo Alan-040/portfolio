@@ -58,10 +58,10 @@ export const MILESTONES: MilestoneItem[] = [
       'Focused on building my identity across four professional areas:',
     ],
     roles: [
-      'Full Stack Developer',
-      'UI/UX Designer',
       'Web Developer',
-      '3D Blender Artist',
+      'App Developer',
+      'UI/UX Designer',
+      'Graphic Designer',
     ],
     visualType: 'identity',
   },
