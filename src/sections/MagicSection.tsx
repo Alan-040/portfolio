@@ -140,7 +140,7 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
     <section
       id="doors"
       ref={sectionRef}
-      className={`min-h-screen pt-24 pb-16 flex flex-col justify-between transition-colors duration-500 relative overflow-hidden ${
+      className={`min-h-screen pt-24 pb-0 flex flex-col justify-between transition-colors duration-500 relative overflow-hidden ${
         isLightMode ? 'text-[#121316]' : 'text-white'
       }`}
     >
@@ -541,25 +541,6 @@ export const MagicSection: React.FC<MagicSectionProps> = ({
               })}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Animated Downward Scroll Indicator (Guides visitors towards My Story) */}
-      <div
-        onClick={() => {
-          const el = document.getElementById('my-story') || document.getElementById('timeline');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-        className={`flex flex-col items-center justify-center pt-8 cursor-pointer group transition-all duration-300 relative z-20 ${
-          isZooming ? 'opacity-0 pointer-events-none' : 'opacity-70 hover:opacity-100'
-        }`}
-        data-cursor="SCROLL"
-      >
-        <span className="text-[10px] font-mono tracking-widest uppercase mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
-          Scroll to My Story
-        </span>
-        <div className="w-5 h-8 rounded-full border border-current/30 flex items-start justify-center p-1.5 shadow-sm group-hover:border-current/60 transition-colors">
-          <div className="w-1 h-2 rounded-full bg-current animate-bounce" />
         </div>
       </div>
     </section>
